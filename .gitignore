@@ -1,0 +1,6 @@
+.kiro/
+.env
+.wrangler/
+node_modules/
+__pycache__/
+_pdf_src/
