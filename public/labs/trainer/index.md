@@ -14,7 +14,7 @@
 5. Tạo nhóm chat Teams **"Training Copilot"** với học viên và đăng các [tin nhắn mẫu](#trainer/tin-nhan-mau-cho-nhom-chat-training-copilot) (Lab 6 Bài 3).
 6. **Lab 6:** tạo cuộc họp Teams 15 phút với học viên, bật **Recording** và **Transcript**, đọc [kịch bản họp mẫu](#trainer/kich-ban-hop-mau-cho-lab-6). Nên cho học viên vào họp muộn 3-4 phút để làm Bài 1.
 7. **Lab 7:** kiểm tra học viên thấy **Researcher** trong mục **Agents** của Copilot Chat ([m365.cloud.microsoft/chat](https://m365.cloud.microsoft/chat)). Nếu không, trình diễn trên máy chiếu. Nên chạy thử đề bài trước 1 ngày vì Researcher mất 3-10 phút.
-8. **Lab 8:** kiểm tra tenant cho phép tạo agent trong Copilot Chat. Nếu không, chuyển sang trình diễn và dựng sẵn agent **HR Assistant** để học viên làm Bài tập 3.
+8. **Lab 8:** kiểm tra tenant cho phép tạo agent trong Copilot Chat. Nếu không, chuyển sang trình diễn và dựng sẵn agent **HR Assistant** để học viên làm Phần D (Bước 8).
 9. Chuẩn bị **tài khoản dự phòng** cho học viên gặp lỗi licence.
 
 **Thời lượng gợi ý:** mỗi Lab 25 đến 30 phút. Nghỉ giải lao 15 phút sau Lab 4. Mỗi lab có 3 bài; nếu thiếu thời gian, làm Bài 1-2 trên lớp và để Bài 3 cho học viên tự làm sau.
