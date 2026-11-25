@@ -4,7 +4,7 @@
 //   KHÔNG ghi vào code vì repo GitHub đang public. Chạy local: tạo file .dev.vars với dòng LAB_PASSWORD=...
 // - Đăng nhập đúng: trình duyệt nhận cookie ký HMAC, có hạn SESSION_DAYS ngày.
 //   Đổi mật khẩu thì mọi cookie cũ hết hiệu lực, mọi người phải đăng nhập lại.
-// - /logout xoá cookie.
+// - Không có nút đăng xuất: phiên tự hết hạn sau SESSION_DAYS ngày.
 
 const COOKIE = 'lab_session';
 const SESSION_DAYS = 1; // hết hạn thì nhập lại cùng mật khẩu; đổi LAB_PASSWORD thì mọi phiên hết hiệu lực ngay
@@ -23,10 +23,6 @@ export default {
         // Logo và hình thương hiệu dùng trên trang đăng nhập: không cần đăng nhập
         if (url.pathname.startsWith('/brand/')) {
             return env.ASSETS.fetch(request);
-        }
-
-        if (url.pathname === '/logout') {
-            return redirect('/login', clearCookie());
         }
 
         if (url.pathname === '/login') {
@@ -95,10 +91,6 @@ function redirect(location, cookie) {
     const headers = { Location: location, 'Cache-Control': 'no-store' };
     if (cookie) headers['Set-Cookie'] = cookie;
     return new Response(null, { status: 302, headers });
-}
-
-function clearCookie() {
-    return `${COOKIE}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax`;
 }
 
 function htmlResponse(html, status = 200) {

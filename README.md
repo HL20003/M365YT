@@ -34,7 +34,7 @@ Mở site với `?trainer=1` (ví dụ `http://localhost:8787/?trainer=1`) để
 
 ## Mật khẩu lớp học
 
-Site được khóa bằng một mật khẩu chung (`src/worker.js`). Người truy cập thấy trang **Đăng nhập**, nhập đúng mật khẩu thì vào được site trong 1 ngày, sau đó nhập lại (vẫn mật khẩu cũ); nút **Đăng xuất** ở thanh trên cùng.
+Site được khóa bằng một mật khẩu chung (`src/worker.js`). Người truy cập thấy trang **Đăng nhập**, nhập đúng mật khẩu thì vào được site trong 1 ngày, sau đó nhập lại (vẫn mật khẩu cũ). Không có nút đăng xuất; muốn thoát sớm thì xóa cookie của site trên trình duyệt.
 
 - **Đặt hoặc đổi mật khẩu:** Cloudflare dashboard > Workers & Pages > `m365copilot-phuongchau-lab` > Settings > **Variables and Secrets** > Add, chọn loại **Secret**, tên `LAB_PASSWORD`. Đổi mật khẩu thì mọi người bị đăng xuất ngay.
 - **Không ghi mật khẩu vào code hay `wrangler.jsonc`.**
