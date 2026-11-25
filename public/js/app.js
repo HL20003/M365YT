@@ -258,7 +258,7 @@ function slugify(text) {
         .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
-document.querySelectorAll('.nav-link').forEach(link => {
+document.querySelectorAll('.nav-link[data-view]').forEach(link => {
     link.addEventListener('click', e => {
         e.preventDefault();
         history.pushState(null, '', location.pathname);

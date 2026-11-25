@@ -32,6 +32,16 @@ Mở site với `?trainer=1` (ví dụ `http://localhost:8787/?trainer=1`) để
 "Chuẩn bị cho người hướng dẫn" trong lịch trình và trang `#trainer`. Trình duyệt ghi nhớ lựa chọn; mở `?trainer=0` để tắt.
 Đây chỉ là ẩn khỏi giao diện, không phải bảo mật: ai biết địa chỉ vẫn mở được.
 
+## Mật khẩu lớp học
+
+Site được khóa bằng một mật khẩu chung (`src/worker.js`). Người truy cập thấy trang **Đăng nhập**, nhập đúng mật khẩu thì vào được site trong 1 ngày, sau đó nhập lại (vẫn mật khẩu cũ); nút **Đăng xuất** ở thanh trên cùng.
+
+- **Đặt hoặc đổi mật khẩu:** Cloudflare dashboard > Workers & Pages > `m365copilot-phuongchau-lab` > Settings > **Variables and Secrets** > Add, chọn loại **Secret**, tên `LAB_PASSWORD`. Đổi mật khẩu thì mọi người bị đăng xuất ngay.
+- **Không ghi mật khẩu vào code hay `wrangler.jsonc`.**
+- Chưa đặt `LAB_PASSWORD` thì site báo "chưa sẵn sàng" thay vì mở công khai.
+- **Logo trên trang đăng nhập:** đặt file logo SoftwareOne chính thức tại `public/brand/softwareone-logo.svg`. Chưa có file thì trang hiện chữ "SoftwareOne" thay thế.
+- Chạy thử trên máy: tạo file `.dev.vars` (đã có trong .gitignore) với dòng `LAB_PASSWORD=<mật khẩu thử>`, rồi `npx wrangler dev`.
+
 ## Cú pháp Markdown riêng
 
 | Viết trong Markdown | Hiển thị |
