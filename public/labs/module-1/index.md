@@ -17,12 +17,11 @@ Các bài thực hành dùng chung bộ tài liệu của **một hệ thống b
 |-----|----------|------------------------|------------------------|--------------------------------|
 | 1 | Copilot Chat | Nắm việc cần làm sau ca nghỉ | Gom yêu cầu báo cáo, góp ý người bệnh | Góp ý kế hoạch bằng số liệu |
 | 2 | Word | Viết lại hướng dẫn cho sản phụ dễ hiểu | Rút gọn thông báo, rà soát hợp đồng theo chính sách | Kiểm tra điểm sai chính sách trước khi trình ký |
-| 3 | Excel | Đọc nhanh số liệu khoa | Chuẩn bị số liệu, biểu đồ giao ban | Biết khoa nào cần hỗ trợ nhân lực |
+| 3 | Excel | Đọc nhanh số liệu khoa | Chuẩn bị số liệu giao ban, báo cáo góp ý hằng tháng bằng skill | Biết khoa nào cần hỗ trợ nhân lực, tìm nguyên nhân sau con số |
 | 4 | PowerPoint | Bài trình bày đào tạo, tình huống giao tiếp | Slide giao ban tháng | Truyền thông kế hoạch cho khoa |
 | 5 | Outlook | Xử lý hộp thư sau ca | Trả lời góp ý của người bệnh | Chuẩn bị cuộc họp xử lý vấn đề |
 | 6 | Teams | Bắt kịp giao ban, biết việc của mình | Biên bản họp có người phụ trách | Chốt điểm chưa thống nhất giữa các khoa |
-| 7 | Researcher | Tìm hiểu chủ đề chăm sóc | Tìm thông tin cho đề xuất cải tiến | Đề xuất có dẫn chứng cho Ban Giám đốc |
-| 8 | Agent Builder | Tra cứu chính sách nhân sự | Trợ lý câu hỏi thường gặp | Trợ lý định hướng điều dưỡng mới |
+| 7 | Agent Builder | Tra cứu chính sách nhân sự | Trợ lý câu hỏi thường gặp | Trợ lý định hướng điều dưỡng mới |
 
 > [!TIP]
 > Trong các prompt, phần đặt trong ngoặc vuông như **[tên khoa]**, **[tên file]** là chỗ anh/chị thay bằng thông tin của mình.
@@ -142,4 +141,4 @@ Microsoft 365 Copilot là trợ lý AI nằm ngay trong các ứng dụng anh/ch
 
 ---
 
-Tiếp theo: **[Module 2 - Viết prompt hiệu quả](#module-2)**.
+Tiếp theo: **[Module 2 - Personalization in Copilot](#module-2)**.

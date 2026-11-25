@@ -1,4 +1,4 @@
-"""Tạo Báo cáo Hoạt động Q3 2026 - 4 cơ sở.xlsx (Lab 1, Lab 3, Lab 7).
+"""Tạo Báo cáo Hoạt động Q3 2026 - 4 cơ sở.xlsx (Lab 1, Lab 3).
 
 Hệ thống bệnh viện giả định, 4 cơ sở ẩn danh A-D (không gắn với bệnh viện có thật). Số liệu được thiết kế để có các
 "điểm đáng chú ý" mà đáp án trong lab dựa vào:

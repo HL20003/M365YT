@@ -1,7 +1,7 @@
 # Copilot Overview Workshop - bản Phương Châu (y tế)
 
 Site lab Microsoft 365 Copilot cho khách hàng Tập đoàn Y tế Phương Châu, dựng theo mẫu `m365copilot-overview-lab-general`
-(cùng cấu trúc Module 1-3, Lab 1-8, Tổng kết, cùng giao diện và cách host). Nội dung viết cho người dùng phổ thông
+(cùng giao diện và cách host; bản này gồm Module 1-2, Lab 1-7, Tổng kết: bỏ module Viết prompt hiệu quả và lab Researcher). Nội dung viết cho người dùng phổ thông
 (điều dưỡng, hành chính, chăm sóc khách hàng, nhân viên khoa phòng), mỗi bài có các bước bấm, prompt và đáp án mẫu thu gọn.
 
 Tên khách hàng chỉ xuất hiện ở trang chủ. Toàn bộ file demo, số liệu và tình huống dùng một hệ thống bệnh viện giả định

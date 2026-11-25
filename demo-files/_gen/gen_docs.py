@@ -311,7 +311,7 @@ def procurement_policy():
     doc.save(PDF_SRC / "Chính sách Mua sắm nội bộ.docx")
 
 
-# ============================================================ Lab 8: chính sách nhân sự (PDF, knowledge source)
+# ============================================================ Lab 7: chính sách nhân sự (PDF, knowledge source)
 def hr_policy():
     doc = new_doc()
     footer_note(doc, FICTION)

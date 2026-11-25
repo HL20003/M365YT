@@ -6,15 +6,14 @@
 
 | Phần | Ứng dụng | Năng lực |
 |------|----------|----------|
-| Module 1-3 | Nền tảng | Copilot nhìn thấy gì, những điều không làm, công thức prompt và 5 kỹ thuật an toàn, Customize Copilot |
+| Module 1-2 | Nền tảng | Copilot nhìn thấy gì, những điều không làm, Customize Copilot |
 | Lab 1 | Copilot Chat | Việc cần làm từ email và lịch, đối chiếu kế hoạch với số liệu, cập nhật thông tin chuyên ngành |
 | Lab 2 | Word | Đọc thông báo như người nhận, viết lại cho sản phụ dễ hiểu, rà soát hợp đồng theo chính sách, soạn tờ trình |
-| Lab 3 | Excel | Bức tranh quý trong 5 ý, phân loại khoa cần hỗ trợ nhân lực, biểu đồ góp ý có tiêu đề nêu phát hiện |
+| Lab 3 | Excel | Bức tranh quý trong 5 ý và hỏi "vì sao", phân loại khoa cần hỗ trợ nhân lực, skill làm sạch file góp ý và lập báo cáo tháng |
 | Lab 4 | PowerPoint | Bài định hướng Phụng sự từ tâm, slide tình huống giao tiếp, diễn tập câu hỏi khó |
 | Lab 5 | Outlook | Nắm chuỗi email nhiều bộ phận, trả lời gia đình người bệnh, kiểm tra giọng văn, chuẩn bị họp |
 | Lab 6 | Teams | Bắt kịp cuộc họp, chốt điểm chưa thống nhất, biên bản có người phụ trách và thời hạn |
-| Lab 7 | Researcher | Đề bài dạng câu hỏi, memo cho Ban Giám đốc kết nối với số liệu nội bộ |
-| Lab 8 | Agent Builder | Trợ lý HR Assistant có giới hạn phạm vi và bảo vệ dữ liệu |
+| Lab 7 | Agent Builder | Trợ lý HR Assistant có giới hạn phạm vi và bảo vệ dữ liệu |
 
 ---
 

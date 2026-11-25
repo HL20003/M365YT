@@ -9,10 +9,12 @@ const demoFiles = [
     { id: 'postpartum', name: 'Hướng dẫn chăm sóc mẹ sau sinh (nháp).docx', desc: 'Lab 2 - Word', icon: 'word', url: 'files/huong-dan-cham-soc-me-sau-sinh.docx' },
     { id: 'contract', name: 'Dự thảo Hợp đồng cung ứng vật tư.docx', desc: 'Lab 2 - Word', icon: 'word', url: 'files/du-thao-hop-dong-cung-ung-vat-tu.docx' },
     { id: 'procurement', name: 'Chính sách Mua sắm nội bộ.pdf', desc: 'Lab 2 - Word (tài liệu đối chiếu)', icon: 'pdf', url: 'files/chinh-sach-mua-sam-noi-bo.pdf' },
-    { id: 'report', name: 'Báo cáo Hoạt động Q3 2026 - 4 cơ sở.xlsx', desc: 'Lab 1 - Copilot Chat, Lab 3 - Excel, Lab 7 - Researcher', icon: 'excel', url: 'files/bao-cao-hoat-dong-q3-2026.xlsx' },
-    { id: 'plan', name: 'Kế hoạch Hoạt động 2027 (dự thảo).docx', desc: 'Lab 1 - Copilot Chat, Lab 7 - Researcher', icon: 'word', url: 'files/ke-hoach-hoat-dong-2027.docx' },
+    { id: 'report', name: 'Báo cáo Hoạt động Q3 2026 - 4 cơ sở.xlsx', desc: 'Lab 1 - Copilot Chat, Lab 3 - Excel', icon: 'excel', url: 'files/bao-cao-hoat-dong-q3-2026.xlsx' },
+    { id: 'feedback', name: 'Góp ý người bệnh T9-T10 2026 (xuất từ hệ thống).xlsx', desc: 'Lab 3 - Excel (tạo skill)', icon: 'excel', url: 'files/gop-y-nguoi-benh-t9-t10-2026.xlsx' },
+    { id: 'plan', name: 'Kế hoạch Hoạt động 2027 (dự thảo).docx', desc: 'Lab 1 - Copilot Chat', icon: 'word', url: 'files/ke-hoach-hoat-dong-2027.docx' },
     { id: 'culture', name: 'Tài liệu đào tạo Phụng sự từ tâm.docx', desc: 'Lab 4 - PowerPoint', icon: 'word', url: 'files/tai-lieu-dao-tao-phung-su-tu-tam.docx' },
-    { id: 'hr', name: 'Chính sách Nhân sự.pdf', desc: 'Lab 8 - Agent Builder (knowledge source)', icon: 'pdf', url: 'files/chinh-sach-nhan-su.pdf' },
+    { id: 'hr', name: 'Chính sách Nhân sự.pdf', desc: 'Lab 7 - Agent Builder (knowledge source)', icon: 'pdf', url: 'files/chinh-sach-nhan-su.pdf' },
+    { id: 'skill-excel', name: 'Skill Excel - bao-cao-gop-y-nguoi-benh.zip', desc: 'Lab 3 - Excel (skill mẫu, dự phòng)', icon: 'zip', url: 'files/skill-excel-bao-cao-gop-y-nguoi-benh.zip' },
 ];
 
 // Chế độ Trainer: mở site với ?trainer=1 để bật, ?trainer=0 để tắt (ghi nhớ trên trình duyệt này)
@@ -32,16 +34,14 @@ const trainerMode = (() => {
 const modules = {
     'trainer':  { title: 'Chuẩn bị cho người hướng dẫn', file: 'labs/trainer/index.md', trainer: true },
     'module-1': { title: 'Module 1 - Giới thiệu Copilot và chuẩn bị', file: 'labs/module-1/index.md' },
-    'module-2': { title: 'Module 2 - Viết prompt hiệu quả', file: 'labs/module-2/index.md' },
-    'module-3': { title: 'Module 3 - Personalization in Copilot', file: 'labs/module-3/index.md' },
+    'module-2': { title: 'Module 2 - Personalization in Copilot', file: 'labs/module-2/index.md' },
     'lab-1':    { title: 'Lab 1 - Copilot Chat', file: 'labs/lab-1/index.md' },
     'lab-2':    { title: 'Lab 2 - Copilot trong Word', file: 'labs/lab-2/index.md' },
     'lab-3':    { title: 'Lab 3 - Copilot trong Excel', file: 'labs/lab-3/index.md' },
     'lab-4':    { title: 'Lab 4 - Copilot trong PowerPoint', file: 'labs/lab-4/index.md' },
     'lab-5':    { title: 'Lab 5 - Copilot trong Outlook', file: 'labs/lab-5/index.md' },
     'lab-6':    { title: 'Lab 6 - Copilot trong Teams', file: 'labs/lab-6/index.md' },
-    'lab-7':    { title: 'Lab 7 - Researcher Agent', file: 'labs/lab-7/index.md' },
-    'lab-8':    { title: 'Lab 8 - Agent Builder in Copilot Chat', file: 'labs/lab-8/index.md' },
+    'lab-7':    { title: 'Lab 7 - Agent Builder in Copilot Chat', file: 'labs/lab-7/index.md' },
     'wrap':     { title: 'Tổng kết', file: 'labs/wrap/index.md' }
 };
 
@@ -159,8 +159,8 @@ function buildPromptCard(innerHtml, label = 'Prompt') {
 
 // Khối tải file demo
 function buildDownloadBlock() {
-    const colors = { excel: '#107c10', word: '#2b579a', powerpoint: '#d24726', pdf: '#b30b00', image: '#5c2d91' };
-    const letters = { excel: 'X', word: 'W', powerpoint: 'P', pdf: 'PDF', image: 'IMG' };
+    const colors = { excel: '#107c10', word: '#2b579a', powerpoint: '#d24726', pdf: '#b30b00', image: '#5c2d91', zip: '#605e5c' };
+    const letters = { excel: 'X', word: 'W', powerpoint: 'P', pdf: 'PDF', image: 'IMG', zip: 'ZIP' };
     const items = demoFiles.map(f => {
         const placeholder = f.url === '#';
         const linkAttrs = placeholder ? ''

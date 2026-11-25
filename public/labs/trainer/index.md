@@ -13,11 +13,11 @@
 4. Gửi lời mời họp **"Họp cải tiến quy trình xuất viện"** cho học viên (Lab 5 Bài 3), xem [nội dung lời mời](#trainer/loi-moi-hop-cho-lab-5).
 5. Tạo nhóm chat Teams **"Training Copilot"** với học viên và đăng các [tin nhắn mẫu](#trainer/tin-nhan-mau-cho-nhom-chat-training-copilot) (Lab 6 Bài 3).
 6. **Lab 6:** tạo cuộc họp Teams 15 phút với học viên, bật **Recording** và **Transcript**, đọc [kịch bản họp mẫu](#trainer/kich-ban-hop-mau-cho-lab-6). Nên cho học viên vào họp muộn 3-4 phút để làm Bài 1.
-7. **Lab 7:** kiểm tra học viên thấy **Researcher** trong mục **Agents** của Copilot Chat ([m365.cloud.microsoft/chat](https://m365.cloud.microsoft/chat)). Nếu không, trình diễn trên máy chiếu. Nên chạy thử đề bài trước 1 ngày vì Researcher mất 3-10 phút.
-8. **Lab 8:** kiểm tra tenant cho phép tạo agent trong Copilot Chat. Nếu không, chuyển sang trình diễn và dựng sẵn agent **HR Assistant** để học viên làm Phần D (Bước 8).
+7. **Lab 3:** kiểm tra học viên thấy **@skill-builder** khi gõ @ trong khung Copilot của Excel. Nếu tenant chưa bật skill, cho học viên cài [skill mẫu](#file-skill-excel) theo TIP trong Bài 3, hoặc trình diễn trên máy chiếu. Nên chạy thử trước 1 ngày: tạo skill mất khoảng 3-5 phút.
+8. **Lab 7:** kiểm tra tenant cho phép tạo agent trong Copilot Chat. Nếu không, chuyển sang trình diễn và dựng sẵn agent **HR Assistant** để học viên làm Phần D (Bước 8).
 9. Chuẩn bị **tài khoản dự phòng** cho học viên gặp lỗi licence.
 
-**Thời lượng gợi ý:** mỗi Lab 25 đến 30 phút. Nghỉ giải lao 15 phút sau Lab 4. Mỗi lab có 3 bài; nếu thiếu thời gian, làm Bài 1-2 trên lớp và để Bài 3 cho học viên tự làm sau.
+**Thời lượng gợi ý:** mỗi Lab 25 đến 30 phút. Nghỉ giải lao 15 phút sau Lab 4. Mỗi lab có 3 bài; nếu thiếu thời gian, làm Bài 1-2 trên lớp và để Bài 3 cho học viên tự làm sau. Riêng **Lab 3** nên ưu tiên Bài 3 (skill, khoảng 15 phút) vì đây là phần phân tích dữ liệu dùng lại được hằng tháng; nếu thiếu thời gian, làm nhanh Bài 2.
 
 ---
 
@@ -31,10 +31,12 @@ Mọi file dùng **đơn vị và số liệu giả định** (4 cơ sở A, B, 
 | [Hướng dẫn chăm sóc mẹ sau sinh (nháp).docx](#file-postpartum) | 2 | Văn phong chuyên môn (sản dịch, co hồi tử cung...), mục "Dấu hiệu cần quay lại bệnh viện ngay" có 9 dấu hiệu |
 | [Dự thảo Hợp đồng cung ứng vật tư.docx](#file-contract) | 2 | 7,8 tỷ đồng; tạm ứng 50% không bảo lãnh; phạt chậm 0,05%/ngày tối đa 5%; không có điều khoản thu hồi; ghi chú: mới 2 báo giá |
 | [Chính sách Mua sắm nội bộ.pdf](#file-procurement) | 2 | Tạm ứng tối đa 30% kèm bảo lãnh (4.1); phạt chậm tối thiểu 0,1%/ngày, trần 8% (4.2); thu hồi lô lỗi trong 48 giờ (4.3); 3 báo giá (2.1); từ 5 tỷ: Tổng Giám đốc sau Pháp chế (Mục 3) |
-| [Báo cáo Hoạt động Q3 2026 - 4 cơ sở.xlsx](#file-report) | 1, 3, 7 | 5 sheet dạng Table, xem [số liệu cài sẵn](#trainer/so-lieu-cai-san-trong-file-excel) |
-| [Kế hoạch Hoạt động 2027 (dự thảo).docx](#file-plan) | 1, 4, 7 | Có giải pháp cho nghỉ việc điều dưỡng và hài lòng Cơ sở C; **không đề cập** quá tải Cơ sở D, chi phí vật tư, thời gian chờ xuất viện |
+| [Báo cáo Hoạt động Q3 2026 - 4 cơ sở.xlsx](#file-report) | 1, 3 | 5 sheet dạng Table, xem [số liệu cài sẵn](#trainer/so-lieu-cai-san-trong-file-excel) |
+| [Góp ý người bệnh T9-T10 2026 (xuất từ hệ thống).xlsx](#file-feedback) | 3 | Dữ liệu thô 2 sheet T9, T10: dòng ghi chú phía trên, dòng trống, dòng trùng, tên cơ sở và nhóm góp ý viết lẫn lộn, ngày lẫn kiểu; T9 có 1 dòng trống Cơ sở. Xem [đáp án Lab 3 Bài 3](#trainer/dap-an-tong-hop) |
+| [Skill Excel - bao-cao-gop-y-nguoi-benh.zip](#file-skill-excel) | 3 | Skill mẫu dự phòng, giải nén rồi chép thư mục vào thư mục skills trên OneDrive |
+| [Kế hoạch Hoạt động 2027 (dự thảo).docx](#file-plan) | 1, 4 | Có giải pháp cho nghỉ việc điều dưỡng và hài lòng Cơ sở C; **không đề cập** quá tải Cơ sở D, chi phí vật tư, thời gian chờ xuất viện |
 | [Tài liệu đào tạo Phụng sự từ tâm.docx](#file-culture) | 4 | Câu chuyện hệ thống, 6 giá trị cốt lõi, quy tắc giao tiếp, 4 bước xử lý khi người bệnh không hài lòng, 3 tình huống |
-| [Chính sách Nhân sự.pdf](#file-hr) | 8 | Đổi ca (2.4), phép năm (Mục 3), nghỉ việc riêng (Mục 4), phụ cấp trực (Mục 5), đào tạo liên tục 48 tiết/2 năm (Mục 6), thẩm quyền (Mục 7), bảo mật (Mục 8) |
+| [Chính sách Nhân sự.pdf](#file-hr) | 7 | Đổi ca (2.4), phép năm (Mục 3), nghỉ việc riêng (Mục 4), phụ cấp trực (Mục 5), đào tạo liên tục 48 tiết/2 năm (Mục 6), thẩm quyền (Mục 7), bảo mật (Mục 8) |
 
 [download-files]
 
@@ -200,16 +202,15 @@ Người hướng dẫn và 2 trợ giảng đóng vai **Trưởng khoa Sản**,
 | 2 | 1 | 5 ý chính, câu hỏi còn mở (mẫu danh sách, giờ ca trực Tết, "ở xa quê"), đoạn dài rút còn 4 gạch đầu dòng |
 | 2 | 2 | Mục dấu hiệu nguy hiểm lên đầu, đủ 9 dấu hiệu, giữ nguyên con số |
 | 2 | 3 | Tạm ứng 50% (4.1), phạt 0,05% (4.2), thiếu thu hồi (4.3), 2 báo giá (2.1); 7,8 tỷ: Tổng Giám đốc sau Pháp chế |
-| 3 | 1 | Quá tải D, nghỉ việc 18%, làm thêm 16,4 giờ, vật tư +27%, hài lòng C giảm; ca sinh 4.180 vượt KH |
+| 3 | 1 | Quá tải D, nghỉ việc 18%, làm thêm 16,4 giờ, vật tư +27%, hài lòng C giảm; ca sinh 4.180 vượt KH. Hỏi "vì sao": C có 31 góp ý thái độ (cao nhất), chờ xuất viện 2,9 giờ, làm thêm 16,7 giờ, nghỉ việc 18,5%; mới là giả thuyết |
 | 3 | 2 | Đỏ: Sản D, Nhi D. Vàng: Ngoại-GMHS D, Cấp cứu D, Sản C. Tổng 2/3/15 |
-| 3 | 3 | Chờ xuất viện 129/377 (34%), 86% từ D và C; Cơ sở C nổi bật về thái độ giao tiếp (31) |
+| 3 | 3 | **T9:** 138 dòng, bỏ 3 trống + 8 trùng, còn 127; 1 dòng "Cần kiểm tra" (trống Cơ sở); chờ xuất viện 44 (35%), 38/44 ở D và C; D 57, C 43. **T10:** bỏ 3 trống + 6 trùng, còn 136; thái độ giao tiếp 19 → 29, Cơ sở C 10 → 19 |
 | 4 | 1-3 | 8 slide, 2 slide tình huống, notes 10 phút, 5 câu hỏi khó |
 | 5 | 1 | Chờ bác sĩ ký giấy ra viện, chờ xét nghiệm, quầy thanh toán 1 người; chưa ai báo thời gian chờ |
 | 5 | 2-3 | Thư xin lỗi không đổ lỗi, không hứa mốc, Coaching chỉ ra câu nghe như biện minh; 3 câu hỏi cho cuộc họp |
 | 6 | 1-2 | Đồng ý phiếu chung; chưa chốt nơi bàn giao; 3 việc: Sản 30/12, GMHS 15/1, QLCL sau 1 tháng |
 | 6 | 3 | 3 thông báo; chờ học viên xác nhận số người tập huấn |
-| 7 | 1-2 | Memo có bảng tóm tắt; ưu tiên Sản D, Nhi D (nghỉ việc, làm thêm cao nhất); Kế hoạch 3.1 chưa có giải pháp giảm làm thêm, điều phối giữa cơ sở; 3 đề xuất có chỉ số |
-| 8 | 3 | 13 ngày, chuyển tối đa 5; 900.000 + 600.000 đồng; không đổi ca với hộ lý; từ chối giá vàng; nhắc không chia sẻ CCCD |
+| 7 | 3 | 13 ngày, chuyển tối đa 5; 900.000 + 600.000 đồng; không đổi ca với hộ lý; từ chối giá vàng; nhắc không chia sẻ CCCD |
 
 ---
 
@@ -219,8 +220,9 @@ Người hướng dẫn và 2 trợ giảng đóng vai **Trưởng khoa Sản**,
 |------------|------------|
 | Không thấy nút Copilot | Kiểm tra licence, đăng xuất và đăng nhập lại, dùng tài khoản dự phòng |
 | Copilot trong Excel bị mờ | Mở file từ OneDrive (không mở bản tải về máy), bấm vào trong bảng |
+| Không thấy @skill-builder trong Excel, hoặc skill không hiện sau khi lưu | Dùng skill mẫu (TIP trong Lab 3 Bài 3), bấm **Refresh** trong **Manage plugins & skills**; nếu vẫn không có, tenant chưa bật skill, chuyển sang trình diễn |
 | Copilot Chat không thấy email mẫu | Kiểm tra nút **Work IQ** (góc trên bên trái) đang bật, không bị gạch ngang; email vừa gửi có thể cần vài phút để Copilot tìm thấy |
 | Không có tab Recap | Cuộc họp chưa bật Transcript, hoặc học viên không phải người tham dự |
-| Không thấy Researcher hoặc Create agent trong mục Agents | Chuyển sang trình diễn trên máy chiếu |
+| Không thấy Create agent trong mục Agents | Chuyển sang trình diễn trên máy chiếu |
 | Không thấy nút Work IQ | Giao diện mới có thể chưa được bật cho tenant, hoặc tài khoản chưa có licence Microsoft 365 Copilot; dùng tài khoản dự phòng |
 | Kết quả khác đáp án mẫu | Bình thường: Copilot trả lời khác nhau mỗi lần. Kiểm tra ý chính và con số, không cần giống từng chữ |

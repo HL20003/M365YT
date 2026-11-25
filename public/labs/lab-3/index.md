@@ -11,9 +11,9 @@
 
 Sau khi hoàn thành lab này, anh/chị sẽ có thể:
 
-- Hỏi Copilot về một file nhiều sheet bằng tiếng Việt, nhận câu trả lời có số liệu và nguồn
+- Hỏi Copilot về một file nhiều sheet bằng tiếng Việt, nhận câu trả lời có số liệu và nguồn, rồi hỏi tiếp **vì sao**
 - Tạo cột phân loại theo tiêu chí của mình mà không cần biết viết công thức
-- Tạo biểu đồ có tiêu đề nói lên phát hiện, sẵn sàng đưa vào báo cáo giao ban
+- Tạo **skill** để Copilot tự làm sạch file góp ý xuất từ hệ thống và lập báo cáo giao ban mỗi tháng, có biểu đồ và nhận xét
 
 ### Tính năng chính
 
@@ -21,7 +21,7 @@ Sau khi hoàn thành lab này, anh/chị sẽ có thể:
 |-----------|--------|
 | **Insights** | Hỏi đáp, tìm xu hướng và điểm bất thường trong số liệu |
 | **Formula** | Tạo cột tính toán, phân loại theo tiêu chí |
-| **Chart** | Trực quan hóa dữ liệu bằng biểu đồ |
+| **Skills** | Dạy Copilot một quy trình nhiều bước một lần, sau đó gọi lại bằng **@tên-skill** mỗi tháng |
 
 ---
 
@@ -29,9 +29,11 @@ Sau khi hoàn thành lab này, anh/chị sẽ có thể:
 
 > **Chị Mai** - *điều dưỡng hành chính khoa Sản*
 >
-> Trước buổi giao ban tháng, điều dưỡng trưởng nhờ chị Mai chuẩn bị 3 thứ từ báo cáo quý 3: bức tranh chung trong 5 ý, danh sách khoa đang quá tải cần hỗ trợ nhân lực, và một biểu đồ cho thấy người bệnh đang phàn nàn nhiều nhất về điều gì. Chị Mai không giỏi Excel, nên nhờ Copilot viết công thức và vẽ biểu đồ.
+> Trước buổi giao ban tháng, điều dưỡng trưởng nhờ chị Mai chuẩn bị bức tranh chung quý 3 trong 5 ý và danh sách khoa đang quá tải cần hỗ trợ nhân lực. Ngoài ra, đầu mỗi tháng chị Mai còn phải làm báo cáo góp ý người bệnh từ file xuất của hệ thống: lọc dòng trùng, sửa tên cơ sở, đếm theo nhóm, vẽ biểu đồ. Việc này lặp lại tháng nào cũng như tháng nào. Chị Mai không giỏi Excel, nên nhờ Copilot viết công thức và làm báo cáo.
 
-**Tài liệu demo:** [Báo cáo Hoạt động Q3 2026 - 4 cơ sở.xlsx](#file-report). Dữ liệu đã ở dạng **Table**:
+**Tài liệu demo** (tải lên **OneDrive** trước khi bắt đầu):
+
+- [Báo cáo Hoạt động Q3 2026 - 4 cơ sở.xlsx](#file-report) cho Bài tập 1 và 2. Dữ liệu đã ở dạng **Table**:
 
 | Sheet | Nội dung |
 |-------|----------|
@@ -40,6 +42,8 @@ Sau khi hoàn thành lab này, anh/chị sẽ có thể:
 | **Ca sinh theo tháng** | Số ca sinh tháng 7, 8, 9 |
 | **Góp ý người bệnh** | Số góp ý quý 3 theo 6 nhóm và theo cơ sở |
 | **Chỉ số hệ thống** | Kế hoạch, thực hiện và chuẩn ngành tham khảo |
+
+- [Góp ý người bệnh T9-T10 2026 (xuất từ hệ thống).xlsx](#file-feedback) cho Bài tập 3: hai sheet **T9** và **T10**, mỗi dòng là một phiếu góp ý (không có tên hay mã hồ sơ người bệnh). Dữ liệu **chưa làm sạch**, giống file xuất từ phần mềm thật.
 
 ---
 
@@ -60,6 +64,17 @@ Sau khi hoàn thành lab này, anh/chị sẽ có thể:
 > - **Chi phí vật tư vượt 27%** (61 so với 48 tỷ)
 > - **Hài lòng Cơ sở C** giảm từ 4,5 xuống 4,1
 > - **Điểm tích cực:** tổng ca sinh **4.180**, vượt kế hoạch 4.000
+
+3. Hỏi tiếp để tìm nguyên nhân, không dừng ở con số:
+
+> **PROMPT:**
+>
+> Vì sao điểm hài lòng Cơ sở C giảm? Tìm bằng chứng từ ít nhất 2 sheet khác nhau, so sánh Cơ sở C với 3 cơ sở còn lại. Ghi rõ điều nào là số liệu cho thấy, điều nào chỉ là giả thuyết cần kiểm tra thêm.
+
+> [!ANSWER]
+> - Sheet **Góp ý người bệnh**: Cơ sở C có **31 góp ý về thái độ giao tiếp**, cao nhất trong 4 cơ sở (D 18, A 6, B 3), dù Cơ sở D lớn hơn nhiều
+> - Sheet **Tổng hợp cơ sở**: thời gian chờ xuất viện **2,9 giờ** (chỉ sau D), giờ làm thêm **16,7 giờ/tháng**, nghỉ việc điều dưỡng **18,5%**
+> - **Giả thuyết cần kiểm tra:** điều dưỡng làm thêm nhiều, thiếu người nên giao tiếp với người bệnh kém đi. Số liệu chỉ cho thấy các chỉ số cùng xấu, chưa chứng minh nguyên nhân; cần hỏi trực tiếp khoa hoặc xem góp ý chi tiết.
 
 > [!TIP]
 > Nếu nút Copilot bị mờ, file chưa được lưu trên OneDrive hoặc dữ liệu chưa ở dạng bảng. Báo người hướng dẫn.
@@ -89,29 +104,56 @@ Sau khi hoàn thành lab này, anh/chị sẽ có thể:
 > [!TIP]
 > Bấm vào một ô trong cột mới để xem công thức Copilot đã viết. Muốn đổi ngưỡng, hỏi tiếp: *"Đổi ngưỡng giờ làm thêm thành 18 giờ"* thay vì làm lại từ đầu.
 
-### Bài tập 3: Biểu đồ góp ý của người bệnh
+### Bài tập 3: Tạo skill làm báo cáo góp ý người bệnh hằng tháng
 
-1. Chuyển sang sheet **Góp ý người bệnh**, bấm vào một ô trong bảng
-2. Dán prompt:
+Mỗi đầu tháng, phòng Chăm sóc khách hàng gửi file góp ý xuất từ hệ thống: có dòng ghi chú phía trên, dòng trống, dòng trùng, tên cơ sở chỗ ghi "CS D" chỗ ghi "Cơ sở D", nhóm góp ý chỗ ghi "Chờ xuất viện" chỗ ghi đầy đủ, ngày lẫn nhiều kiểu. Thay vì mỗi tháng làm sạch và lập báo cáo bằng tay, anh/chị dạy Copilot làm **một lần**, tháng sau chỉ cần gọi tên skill.
+
+1. Mở [Góp ý người bệnh T9-T10 2026 (xuất từ hệ thống).xlsx](#file-feedback) **từ OneDrive**, chọn sheet **T9**. Lướt qua để thấy dữ liệu chưa sạch
+2. Bấm **Copilot**, gõ **@skill-builder** và mô tả công việc:
 
 > **PROMPT:**
 >
-> Vẽ biểu đồ cột thể hiện tổng số góp ý của 4 cơ sở theo từng nhóm, sắp xếp từ nhiều đến ít. Đặt tiêu đề nêu đúng phát hiện chính (nhóm nào nhiều nhất, chiếm bao nhiêu phần trăm, tập trung ở cơ sở nào), không chỉ ghi tên chỉ số.
+> @skill-builder Tạo skill tên "bao-cao-gop-y-nguoi-benh" để làm báo cáo góp ý người bệnh hằng tháng cho buổi giao ban, từ sheet dữ liệu thô xuất từ hệ thống. Các bước: (1) bỏ các dòng ghi chú phía trên dòng tiêu đề có cột STT; (2) trong một sheet mới tên "<tên sheet> sạch": bỏ dòng trống và dòng trùng, chuẩn hóa Cơ sở về 4 tên (Cơ sở A, Cơ sở B, Cơ sở C, Cơ sở D), Nhóm góp ý về 6 nhóm (Thời gian chờ thủ tục xuất viện, Thời gian chờ khám, Thái độ giao tiếp, Viện phí và thanh toán, Cơ sở vật chất, Ăn uống và vệ sinh), Mức độ về Cao/Trung bình/Thấp, Ngày nhận về kiểu ngày dd/mm/yyyy, định dạng thành Table; (3) ghi lại đã bỏ bao nhiêu dòng và sửa bao nhiêu giá trị; (4) trong sheet "<tên sheet> báo cáo": bảng đếm Nhóm góp ý theo Cơ sở có tổng, và tỷ lệ mức độ Cao theo nhóm; (5) biểu đồ cột chồng theo nhóm góp ý, tiêu đề nêu phát hiện chính; (6) 3 nhận xét có số liệu, so sánh với tháng trước nếu có. Không sửa sheet gốc. Giá trị không xác định được, kể cả ô trống, thì đánh dấu "Cần kiểm tra", không tự đoán. Không đưa thông tin nhận diện người bệnh vào nhận xét.
 
-3. Sau khi Copilot tạo, bấm **Add to a new sheet** để đưa biểu đồ vào file. Sao chép biểu đồ dán vào PowerPoint nếu cần.
+3. Copilot hiển thị nội dung skill (tên, mô tả, các bước). Đọc lại, trả lời nếu Copilot hỏi thêm, rồi chọn **lưu**. Skill được lưu vào thư mục **skills** trên OneDrive
+4. Chạy skill cho tháng 9:
+
+> **PROMPT:**
+>
+> @bao-cao-gop-y-nguoi-benh Làm báo cáo cho sheet T9.
+
+5. **Kiểm tra trước khi dùng:** mở sheet **T9 sạch**, đối chiếu số dòng Copilot báo với số dòng trong Table, lọc cột **Cơ sở** để tìm dòng **Cần kiểm tra**
+6. Chạy lại cho tháng 10. Không cần mô tả lại các bước:
+
+> **PROMPT:**
+>
+> @bao-cao-gop-y-nguoi-benh Làm báo cáo cho sheet T10 và so sánh với báo cáo tháng 9.
 
 > [!ANSWER]
-> Biểu đồ cột 6 nhóm, cao nhất là **Thời gian chờ thủ tục xuất viện: 129/377 lượt (34%)**, tiếp theo là thời gian chờ khám (87) và thái độ giao tiếp (58). Tiêu đề gợi ý: *"Thời gian chờ xuất viện chiếm 34% góp ý, 86% đến từ Cơ sở D và C"*.
+> **Tháng 9:**
+>
+> - Từ 138 dòng, bỏ **3 dòng trống** và **8 dòng trùng**, còn **127 góp ý**. Có **1 dòng bỏ trống Cơ sở** được đánh dấu "Cần kiểm tra"
+> - **Thời gian chờ thủ tục xuất viện** nhiều nhất: **44 góp ý (35%)**, trong đó **38 (86%)** ở Cơ sở D và C; một nửa là mức độ Cao (22/44)
+> - Cơ sở D nhiều góp ý nhất (**57/127**), tiếp theo là Cơ sở C (43)
+> - Tiêu đề biểu đồ gợi ý: *"Chờ xuất viện chiếm 35% góp ý tháng 9, 86% đến từ Cơ sở D và C"*
+>
+> **Tháng 10:**
+>
+> - Bỏ 3 dòng trống và 6 dòng trùng, còn **136 góp ý**
+> - Chờ xuất viện vẫn nhiều nhất (**42**, 31%), nhưng **Thái độ giao tiếp tăng từ 19 lên 29** (15% lên 21%), riêng **Cơ sở C từ 10 lên 19**. Đây là tín hiệu cần đưa lên giao ban, khớp với việc điểm hài lòng Cơ sở C giảm ở Bài tập 1
 
 > [!TIP]
-> Hỏi tiếp: *"Ở Cơ sở C, nhóm góp ý nào cao bất thường so với các cơ sở khác?"* Copilot sẽ chỉ ra **Thái độ giao tiếp (31 lượt)**, khớp với việc điểm hài lòng Cơ sở C giảm.
+> **Chưa tạo được skill?** Tải [Skill Excel - bao-cao-gop-y-nguoi-benh.zip](#file-skill-excel) về máy và giải nén. Trong khung Copilot của Excel, bấm **...** > **Manage plugins & skills** > **Custom skills** > **Create OneDrive folder** > **Open skills folder**, chép thư mục **bao-cao-gop-y-nguoi-benh** vào đó và bấm **Refresh**. Sau đó chạy tiếp bước 4.
+
+> [!TIP]
+> Muốn sửa skill, ví dụ thêm bảng đếm theo khoa, chỉ cần nói: *"Cập nhật skill bao-cao-gop-y-nguoi-benh: thêm bảng đếm Nhóm góp ý theo Khoa."* Tháng sau gọi skill là có luôn bảng mới.
 
 ---
 
 ## Lưu ý tuân thủ
 
 > [!NOTE]
-> Chỉ dùng số liệu tổng hợp, không đưa danh sách người bệnh, mã hồ sơ vào file phân tích. Số liệu Copilot tính phải được đối chiếu với báo cáo chính thức trước khi đưa vào báo cáo giao ban.
+> Chỉ dùng số liệu tổng hợp hoặc phiếu góp ý **đã bỏ tên, số điện thoại, mã hồ sơ** người bệnh. Nếu file xuất từ hệ thống có các cột này, xóa cột trước khi mở Copilot. Không ghi mật khẩu, thông tin người bệnh hay số liệu mật vào nội dung skill. Số liệu Copilot tính phải được đối chiếu với báo cáo chính thức trước khi đưa vào báo cáo giao ban.
 
 ---
 
@@ -140,7 +182,13 @@ Sau khi hoàn thành lab này, anh/chị sẽ có thể:
 
 > **PROMPT:**
 >
-> Từ sheet Ca sinh theo tháng, vẽ biểu đồ cột so sánh số ca sinh của 4 cơ sở theo từng tháng trong quý 3, tiêu đề nêu cơ sở có nhiều ca sinh nhất.
+> Từ sheet Góp ý người bệnh, vẽ biểu đồ cột thể hiện tổng số góp ý của 4 cơ sở theo từng nhóm, sắp xếp từ nhiều đến ít. Đặt tiêu đề nêu đúng phát hiện chính (nhóm nào nhiều nhất, chiếm bao nhiêu phần trăm, tập trung ở cơ sở nào), không chỉ ghi tên chỉ số.
+
+### Skill cho việc lặp lại
+
+> **PROMPT:**
+>
+> @skill-builder Tạo skill "bao-cao-cong-suat-giuong-tuan" để mỗi tuần, từ file công suất giường theo khoa: tính công suất từng khoa, đánh dấu khoa trên 90%, so sánh với tuần trước, vẽ biểu đồ cột theo khoa và viết 3 nhận xét cho điều dưỡng trưởng.
 
 > [!NOTE]
 > Với file Excel của khoa, hãy định dạng dữ liệu thành **Table** (Ctrl + T) và thay tên sheet, tên cột trong prompt cho khớp.
@@ -151,6 +199,6 @@ Sau khi hoàn thành lab này, anh/chị sẽ có thể:
 
 | Anh/chị đã học được | Tính năng |
 |---------------------|-----------|
-| Nắm nhanh bức tranh chung, có số liệu và nguồn | Insights |
+| Nắm nhanh bức tranh chung, có số liệu và nguồn, rồi hỏi tiếp "vì sao" | Insights |
 | Phân loại khoa theo tiêu chí riêng, không cần tự viết công thức | Formula |
-| Biểu đồ có tiêu đề nêu phát hiện | Chart |
+| Làm sạch file xuất từ hệ thống và lập báo cáo tháng chỉ bằng một câu gọi skill | Skills |

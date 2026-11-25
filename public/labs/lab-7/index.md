@@ -1,12 +1,12 @@
-# Lab 7 - Researcher Agent
+# Lab 7 - Agent Builder in Copilot Chat
 
-**Ứng dụng:** Microsoft 365 Copilot Chat, agent Researcher
+**Ứng dụng:** Microsoft 365 Copilot Chat, Agent Builder
 
 > [!NOTE]
 > **Toàn bộ tài liệu, số liệu và tình huống trong workshop là bản nháp dùng cho đào tạo.** Tên nhân vật, người bệnh và đối tác là giả định. Copilot chỉ hỗ trợ công việc hành chính, truyền thông, đào tạo; **không dùng cho chẩn đoán hay quyết định điều trị**. **Không nhập thông tin người bệnh thật vào Copilot.**
 
 > [!TIP]
-> Nếu tài khoản không thấy **Researcher** trong mục **Agents**, người hướng dẫn sẽ trình diễn trên máy chiếu.
+> Nếu tài khoản chưa được phép tạo agent, người hướng dẫn sẽ trình diễn Phần A-C, và anh/chị dùng agent dựng sẵn để làm Phần D.
 
 ---
 
@@ -14,140 +14,218 @@
 
 Sau khi hoàn thành lab này, anh/chị sẽ có thể:
 
-- Biết khi nào dùng Researcher thay vì hỏi Copilot Chat thông thường
-- Giao cho Researcher một đề bài dạng câu hỏi cụ thể, có đính kèm số liệu nội bộ
-- Định hình báo cáo theo người đọc và kiểm tra nguồn trước khi dùng
+- Tạo một trợ lý AI cho cả khoa chỉ bằng tiếng Việt, không cần lập trình
+- Cấu hình instructions, knowledge và starter prompts để agent trả lời đúng phạm vi
+- Kiểm tra câu trả lời của agent, kể cả câu hỏi ngoài phạm vi và tình huống có dữ liệu nhạy cảm, trước khi chia sẻ với đồng nghiệp
 
-### Researcher làm việc thế nào?
+---
 
-**Researcher** là agent nghiên cứu chuyên sâu của Microsoft 365 Copilot. Researcher lấy thông tin từ **web** và từ **nội dung công việc** anh/chị có quyền xem (file, email, cuộc họp, chat), có thể hỏi lại để làm rõ đề bài, rồi viết thành báo cáo có trích dẫn. Anh/chị nói rõ trong prompt muốn dùng nguồn nội bộ, web hay cả hai.
+## Khái niệm cần biết
 
-| | Copilot Chat thông thường | Researcher |
-|---|---------------------------|------------|
-| **Dùng khi** | Câu hỏi nhanh, việc hằng ngày | Đề bài cần tìm hiểu kỹ từ nhiều nguồn, cần dẫn chứng |
-| **Thời gian** | Vài giây | 3 đến 10 phút |
-| **Kết quả** | Câu trả lời ngắn | Báo cáo nhiều mục, có trích nguồn, có thể mở thành file Word |
+| Khái niệm | Giải thích |
+|-----------|------------|
+| **Agent** | Trợ lý AI anh/chị tự tạo cho một việc cụ thể, trả lời dựa trên instructions và knowledge đã cấu hình |
+| **Instructions** | Lời dặn cho agent: làm gì, trả lời theo giọng điệu nào và không được làm gì |
+| **Knowledge** | Tài liệu agent dùng để trả lời (file, thư mục SharePoint), giúp câu trả lời chính xác và có nguồn |
+| **Starter prompts** | Câu hỏi gợi ý hiện sẵn trên giao diện chat để người dùng bấm vào và bắt đầu |
+
+Agent Builder có hai cách làm việc, lab này dùng lần lượt từng cách:
+
+| Cách | Dùng để | Trong lab |
+|------|---------|-----------|
+| **Mô tả bằng prompt** (Describe) | Gõ mô tả agent bằng tiếng Việt rồi nhấn **Send**; Agent Builder tự điền cấu hình | Phần B |
+| **Configure** | Xem và chỉnh trực tiếp từng trường: Name, Description, Instructions, Knowledge, Starter prompts | Phần C |
+
+Khung chat thử nghiệm bên phải màn hình luôn hiển thị để anh/chị thử agent bất cứ lúc nào (Phần D).
 
 ---
 
 ## Tình huống
 
-> **Chị Lan** - *Phó phòng Điều dưỡng*
->
-> Tỷ lệ nghỉ việc của điều dưỡng toàn hệ thống đang ở mức **18%**, cao hơn chuẩn ngành 12%. Số liệu quý 3 cho thấy nghỉ việc và giờ làm thêm tập trung ở vài khoa quá tải. Dự thảo **Kế hoạch Hoạt động 2027** đã có nhóm giải pháp giữ chân điều dưỡng (Mục 3.1), nhưng Giám đốc muốn biết các giải pháp này **đã đủ chưa** trước khi trình Hội đồng quản trị.
->
-> Chị Lan được giao chuẩn bị một memo 2-3 trang cho cuộc họp Ban Giám đốc tuần sau: các bệnh viện khác đã làm gì, khoa nào của mình cần ưu tiên, và kế hoạch 2027 nên bổ sung gì. Chị không có thời gian tự đọc hàng chục nghiên cứu, nên giao cho Researcher.
+> Mỗi tháng, Phòng Nhân sự và các điều dưỡng trưởng nhận hàng chục câu hỏi lặp lại: được nghỉ phép bao nhiêu ngày, trực Tết được phụ cấp bao nhiêu, đổi ca phải báo ai, cần bao nhiêu tiết đào tạo liên tục. Anh/chị tạo **HR Assistant** để nhân viên tự tra cứu 24/7. Agent chỉ trả lời dựa trên Chính sách Nhân sự và luôn ghi rõ mục tham chiếu.
 
-**Tài liệu đính kèm:** [Báo cáo Hoạt động Q3 2026 - 4 cơ sở.xlsx](#file-report) (sheet **Theo khoa**, **Chỉ số hệ thống**) và [Kế hoạch Hoạt động 2027 (dự thảo).docx](#file-plan), đã lưu trên OneDrive.
+**Knowledge:** [Chính sách Nhân sự.pdf](#file-hr) - tải file và lưu vào **OneDrive** của anh/chị trước khi bắt đầu (xem [cách tải file về và đưa lên OneDrive](#module-1/cach-tai-file-ve-may-va-dua-len-onedrive)).
+
+**Kết quả cuối lab:** một agent tên **HR Assistant**, trả lời từ Chính sách Nhân sự, có dẫn mục, từ chối câu hỏi ngoài phạm vi, nhắc không chia sẻ dữ liệu cá nhân và có link chia sẻ cho đồng nghiệp.
 
 ---
 
-### Bài tập 1: Giao đề bài cho Researcher
+## Phần A: Mở Agent Builder
 
-1. Vào [https://m365.cloud.microsoft/chat](https://m365.cloud.microsoft/chat), đăng nhập bằng **tài khoản công ty**
-2. Trong Chat, tìm mục **Agents** và chọn **Researcher**
-3. Gõ **/** để đính kèm [Báo cáo Hoạt động Q3 2026 - 4 cơ sở.xlsx](#file-report), gõ **/** lần nữa để đính kèm [Kế hoạch Hoạt động 2027 (dự thảo).docx](#file-plan)
-4. Dán prompt, bấm **Gửi**:
+### Bước 1: Mở Agent Builder
 
-> **PROMPT:**
->
-> Tôi là Phó phòng Điều dưỡng của một hệ thống 4 bệnh viện tư, khoảng 1.000 điều dưỡng, tỷ lệ nghỉ việc 18% so với chuẩn ngành 12%. Tôi cần chuẩn bị memo cho Ban Giám đốc. Hãy trả lời 3 câu hỏi:
-> 1. Các bệnh viện ở Việt Nam và châu Á đã áp dụng những giải pháp nào để giảm nghỉ việc của điều dưỡng, đặc biệt ở khoa đông người bệnh? Nêu 5 giải pháp, mỗi giải pháp có ví dụ, kết quả đạt được và điều kiện áp dụng.
-> 2. Dựa trên sheet Theo khoa và Chỉ số hệ thống trong file Báo cáo Hoạt động, những khoa nào cần ưu tiên và vì sao (nêu công suất giường, giờ làm thêm, số người nghỉ việc)?
-> 3. Đặt các giải pháp ở câu 1 cạnh Mục 3.1 của Kế hoạch Hoạt động 2027: kế hoạch đã có gì, còn thiếu gì, và đề xuất 3 điều nên bổ sung, mỗi điều có chỉ số đo kết quả.
->
-> Dùng cả file nội bộ đính kèm và nguồn trên web. Mỗi giải pháp và số liệu bên ngoài phải có trích dẫn nguồn. Số liệu nội bộ ghi rõ tên sheet hoặc mục tài liệu.
+1. Vào [https://m365.cloud.microsoft/](https://m365.cloud.microsoft/) bằng **tài khoản công ty**, mở **Copilot**
+2. Ở thanh điều hướng bên trái, tìm mục **Agents**, chọn **New Agent** (hoặc **Create agent**)
+3. Màn hình Agent Builder mở ra: ô mô tả agent ở giữa, nút **Configure** để chỉnh chi tiết, khung chat thử nghiệm ở bên phải
 
 > [!TIP]
-> Đề bài tốt cho Researcher là **câu hỏi cụ thể**, không chỉ "tìm hiểu về nghỉ việc của điều dưỡng". Nói rõ **mình là ai**, **người đọc là ai**, và **đính kèm số liệu nội bộ** để báo cáo bám sát thực tế của mình.
+> Agent Builder còn cho phép **chọn một template có sẵn** rồi tuỳ chỉnh bằng **Configure**. Lab này tạo agent từ đầu bằng prompt để anh/chị nắm được từng phần cấu hình.
 
-### Bài tập 2: Trả lời câu hỏi làm rõ và kiểm tra báo cáo
+> [!NOTE]
+> Giao diện Copilot được Microsoft cập nhật thường xuyên, nên vị trí nút và tên gọi trên máy anh/chị có thể hơi khác hướng dẫn. Nếu không thấy **New Agent**, nhấn `Ctrl + F5` để tải lại trang, hoặc báo người hướng dẫn.
 
-1. Researcher thường hỏi lại để làm rõ phạm vi. Đây là lúc định hình báo cáo theo người đọc. Trả lời:
+---
+
+## Phần B: Mô tả agent bằng prompt
+
+Nhập lần lượt **cả 3 prompt** dưới đây vào ô mô tả, mỗi prompt nhấn **Send**. Đợi Agent Builder trả lời xong rồi mới gửi prompt tiếp theo. Agent Builder có thể hỏi thêm để làm rõ; 3 prompt dưới đây đã trả lời sẵn các câu hỏi thường gặp, nên anh/chị chỉ cần gửi prompt tiếp theo.
+
+### Bước 2: Mô tả mục đích của agent
 
 > **PROMPT:**
 >
-> Ưu tiên nguồn trong 5 năm gần đây, từ bệnh viện, hiệp hội điều dưỡng, cơ quan y tế hoặc tạp chí chuyên ngành. Người đọc là Ban Giám đốc nên viết dạng memo 2-3 trang: mở đầu bằng bảng tóm tắt (Giải pháp | Kế hoạch 2027 đã có chưa | Chi phí ước tính thấp/trung bình/cao | Thời gian triển khai | Mức ưu tiên), phần phân tích để sau.
+> Tôi muốn tạo trợ lý tra cứu chính sách nhân sự tên "HR Assistant" cho toàn bộ nhân viên bệnh viện, phần lớn là điều dưỡng, nữ hộ sinh làm việc theo ca. Trợ lý trả lời về thời giờ làm việc, đổi ca, nghỉ phép năm, nghỉ việc riêng, phụ cấp trực, đào tạo liên tục và thẩm quyền phê duyệt.
 
-2. Đợi 3 đến 10 phút. Anh/chị có thể làm việc khác và quay lại khi báo cáo xong
-3. Khi có báo cáo, bấm vào **2-3 trích dẫn** bất kỳ để kiểm tra nguồn, rồi hỏi tiếp:
+### Bước 3: Quy định giọng điệu và cách trình bày
 
 > **PROMPT:**
 >
-> Trong báo cáo, kết luận nào dựa trên một nguồn duy nhất hoặc nguồn cũ hơn 5 năm? Đánh dấu để tôi kiểm tra lại trước khi trình.
+> Giọng thân thiện, dễ hiểu, xưng "mình" và gọi người hỏi là "anh/chị", phù hợp với nhân viên đang tranh thủ hỏi giữa ca. Trả lời ngắn gọn, có ví dụ tính cụ thể khi người hỏi nêu số năm làm việc hoặc số ca trực. Trình bày định mức và cấp phê duyệt dạng bảng khi có thể. Cuối mỗi câu trả lời ghi rõ mục tương ứng, ví dụ "(Nguồn: Chính sách Nhân sự, Mục 3.2)".
+
+### Bước 4: Định nghĩa giới hạn của agent
+
+> **PROMPT:**
+>
+> Agent chỉ trả lời dựa trên Chính sách Nhân sự được cung cấp. Nếu tài liệu không có thông tin, nói rõ là chưa có thông tin và hướng dẫn liên hệ Phòng Nhân sự (máy lẻ 1010). Không trả lời câu hỏi ngoài chính sách nhân sự, không tư vấn chuyên môn y khoa. Không tự phê duyệt hay hứa thay cấp có thẩm quyền. Không trả lời về lương, kỷ luật của một cá nhân cụ thể. Nếu người dùng nhập số CCCD, số tài khoản hoặc thông tin sức khỏe, nhắc họ không chia sẻ thông tin này trong cuộc trò chuyện.
+
+> [!NOTE]
+> Sau 3 prompt, Agent Builder đã tự điền **tên**, **mô tả**, **instructions** và **starter prompts**. Nội dung tự sinh có thể hơi khác nhau giữa các học viên, điều này là bình thường. Phần C sẽ kiểm tra và chỉnh lại.
+
+---
+
+## Phần C: Kiểm tra và hoàn thiện trong Configure
+
+### Bước 5: Kiểm tra Name, Description và Instructions
+
+1. Chọn **Configure**
+2. Kiểm tra từng trường:
+
+| Trường | Cần thấy | Nếu chưa đúng |
+|--------|----------|---------------|
+| **Name** | HR Assistant | Sửa trực tiếp trong ô Name |
+| **Description** | Một câu mô tả agent giúp nhân viên tra cứu chính sách nhân sự của bệnh viện | Sửa trực tiếp |
+| **Instructions** | Có đủ: phạm vi, giọng điệu, dẫn mục, không tư vấn y khoa, không phê duyệt thay, không trả lời về cá nhân cụ thể, nhắc không chia sẻ CCCD/sức khỏe | Bổ sung câu còn thiếu vào cuối ô Instructions |
+
+> [!TIP]
+> Từ đây trở đi, nên chỉnh trực tiếp trong **Configure** thay vì quay lại gõ prompt mô tả. Prompt mô tả mới có thể khiến Agent Builder viết lại toàn bộ Instructions và làm mất phần anh/chị đã sửa tay.
+
+### Bước 6: Thêm Chính sách Nhân sự làm knowledge
+
+1. Kéo xuống phần **Knowledge**
+2. Thêm file [Chính sách Nhân sự.pdf](#file-hr): chọn file đã lưu trên **OneDrive**, hoặc tải file lên trực tiếp
+3. Bật toggle **Only use specified sources** để agent chỉ dùng tài liệu đã chọn, không dùng kiến thức chung hay nội dung web
+
+> [!NOTE]
+> Với agent trả lời về chính sách, nên luôn bật **Only use specified sources**: câu trả lời kiểm chứng được và agent không tự "bịa" số ngày phép hay mức phụ cấp. Đổi lại, agent sẽ không trả lời được câu hỏi nằm ngoài tài liệu, và đó chính là hành vi mong muốn.
+
+### Bước 7: Chỉnh starter prompts
+
+Kéo xuống phần **Starter prompts**. Giữ hoặc thay để có các câu hỏi nhân viên hay hỏi nhất, ví dụ:
+
+| Title | Message |
+|-------|---------|
+| Ngày phép | Tôi làm 6 năm thì được bao nhiêu ngày phép? |
+| Phụ cấp trực Tết | Điều dưỡng trực đêm mùng 2 Tết được phụ cấp bao nhiêu? |
+| Đổi ca | Muốn đổi ca thì làm thế nào, báo ai? |
+| Đào tạo liên tục | Tôi cần bao nhiêu tiết đào tạo liên tục mỗi năm? |
+
+---
+
+## Phần D: Test agent trước khi tạo
+
+### Bước 8: Thử agent trong khung chat thử nghiệm
+
+Nhập lần lượt các câu hỏi dưới đây vào khung chat thử nghiệm bên phải, nhấn **Send**, rồi mở phần đáp án để so sánh.
+
+> **PROMPT:**
+>
+> Mình là điều dưỡng, đã làm ở bệnh viện 6 năm. Năm nay mình được bao nhiêu ngày phép? Phép năm ngoái còn 7 ngày thì được chuyển sang không?
+
+> **PROMPT:**
+>
+> Mình là điều dưỡng, có tên trong lịch trực đêm mùng 2 Tết và đêm mùng 5 Tết. Phụ cấp trực của mình là bao nhiêu? Mình có được xin nghỉ phép trong 7 ngày Tết không?
+
+> **PROMPT:**
+>
+> Mình muốn đổi ca đêm thứ Bảy với một bạn hộ lý cùng khoa có được không? Cần báo ai, trước bao lâu?
+
+> **PROMPT:**
+>
+> Giá vàng hôm nay bao nhiêu?
+
+> **PROMPT:**
+>
+> Số CCCD của mình là 0790xxxxxxxx, kiểm tra giúp mình còn bao nhiêu ngày phép.
 
 > [!ANSWER]
-> Memo mở đầu bằng **bảng tóm tắt**.
->
-> **Giải pháp thường gặp từ bên ngoài:**
->
-> - định biên điều dưỡng theo số người bệnh, giới hạn giờ làm thêm;
-> - xếp ca linh hoạt, cho điều dưỡng tự đăng ký ca;
-> - kèm cặp điều dưỡng mới trong năm đầu;
-> - lộ trình nghề nghiệp gắn với đãi ngộ;
-> - hỗ trợ sức khỏe tinh thần, phòng kiệt sức;
-> - khảo sát gắn kết, phỏng vấn nghỉ việc.
->
-> **Khoa cần ưu tiên** (sheet Theo khoa):
->
-> | Khoa | Công suất giường | Giờ làm thêm/tháng | Điều dưỡng nghỉ việc trong quý |
-> |------|------------------|---------------------|--------------------------------|
-> | Sản, Cơ sở D | 102% | 26 giờ | 8 người |
-> | Nhi - Sơ sinh, Cơ sở D | 98% | 22 giờ | 6 người |
-> | Cấp cứu, Cơ sở D | | 24 giờ | |
-> | Sản, Cơ sở C | | 21 giờ | |
->
-> Trong khi đó **Cơ sở B** chỉ dùng 58% giường, giờ làm thêm 7,2 giờ.
->
-> **So với Kế hoạch 2027, Mục 3.1:**
->
-> - **Đã có:** phụ cấp, lộ trình 4 bậc, kèm cặp, khảo sát gắn kết.
-> - **Còn thiếu:** giải pháp **giảm giờ làm thêm và định biên** cho khoa quá tải, **điều phối người bệnh hoặc nhân lực** giữa Cơ sở D và B.
->
-> **3 đề xuất có chỉ số**, ví dụ:
->
-> - giờ làm thêm dưới 12 giờ/tháng ở các khoa Đỏ;
-> - tỷ lệ nghỉ việc ở Cơ sở D dưới 15% cuối 2027;
-> - 100% điều dưỡng mới có người kèm cặp.
+> | Câu hỏi | Câu trả lời đúng (theo Chính sách Nhân sự) |
+> |---------|---------------------------------------------|
+> | Phép năm, 6 năm làm việc | 12 + 1 = **13 ngày** (đủ 5 năm cộng 1 ngày). Phép cũ chỉ chuyển **tối đa 5 ngày**, dùng trước 31/03. Nguồn: Mục 3.2, 3.3 |
+> | Trực Tết | Mùng 2 Tết **300.000 x 3 = 900.000 đồng**, mùng 5 Tết **300.000 x 2 = 600.000 đồng**. Không đăng ký nghỉ phép trong 7 ngày Tết khi đã có tên trong lịch trực. Nguồn: Mục 5, 5.1, 3.5 |
+> | Đổi ca với hộ lý | **Không được**, vì đổi ca phải giữa hai người **cùng chức danh**. Nếu đổi với một điều dưỡng khác: đề nghị trên hệ thống, Điều dưỡng trưởng khoa duyệt **trước 24 giờ**. Nguồn: Mục 2.4 |
+> | Giá vàng | Agent **từ chối** lịch sự vì ngoài phạm vi chính sách nhân sự |
+> | Số CCCD | Agent nhắc **không chia sẻ số CCCD**, hướng dẫn tra cứu trên hệ thống nhân sự hoặc liên hệ Phòng Nhân sự. Nguồn: Mục 8 |
+
+Nếu câu trả lời chưa đạt (không dẫn mục, sai số liệu, vẫn trả lời câu hỏi giá vàng, không nhắc về số CCCD), quay lại **Configure**: kiểm tra toggle **Only use specified sources** đã bật chưa, và bổ sung vào ô **Instructions** quy tắc còn thiếu. Sau đó test lại.
+
+---
+
+## Phần E: Tạo và chia sẻ agent
+
+### Bước 9: Tạo agent và lấy link chia sẻ
+
+1. Khi đã hài lòng với kết quả test, chọn **Create**
+2. Khi tạo xong, màn hình hiện liên kết tới agent. Nhấn **Copy** để sao chép liên kết
+3. Chọn **Change sharing settings** và chọn phạm vi chia sẻ. Vì agent dùng file trên OneDrive/SharePoint làm knowledge, nên chọn **Specific users in your organization** và nhập tên đồng nghiệp hoặc nhóm cần dùng
+4. Nhấn **Save**
+5. Dán liên kết vào email hoặc Teams chat để gửi cho đồng nghiệp
+6. Mở agent từ mục **Agents** ở thanh điều hướng bên trái và hỏi lại một câu trong Bước 8
+
+> [!NOTE]
+> - Người nhận chỉ dùng được agent, **không sửa được**; chỉ chủ sở hữu agent mới chỉnh sửa được.
+> - Agent tôn trọng phân quyền: người không có **quyền đọc** file Chính sách Nhân sự thì agent không trả lời từ file đó cho người ấy. Trong thực tế, nên đặt tài liệu trong một **thư mục hoặc site SharePoint** do Phòng Nhân sự quản lý và cấp quyền đọc cho đúng nhóm nhân viên; khi chính sách được cập nhật, agent tự dùng phiên bản mới.
 
 > [!TIP]
-> Hỏi tiếp: *"Chuyển bảng tóm tắt thành 3 slide cho cuộc họp Ban Giám đốc"*, hoặc mở báo cáo thành file Word để chỉnh sửa trước khi gửi.
+> Để chia sẻ lại sau này: chọn **HR Assistant** ở thanh điều hướng bên trái → **... (More)** → **Share**. Menu **...** này cũng là nơi mở lại agent để chỉnh sửa.
 
 ---
 
 ## Lưu ý tuân thủ
 
 > [!NOTE]
-> Không đưa dữ liệu cá nhân của nhân viên (tên người nghỉ việc, lương, đánh giá) hay dữ liệu người bệnh vào đề bài. Báo cáo của Researcher là tài liệu tham khảo: luôn mở nguồn trích dẫn để kiểm tra, và kiểm tra lại các con số nội bộ với báo cáo gốc trước khi trình.
+> - Chỉ chia sẻ agent khi tài liệu nguồn đã được phê duyệt phát hành.
+> - Agent tự tạo chỉ dùng trong nội bộ; knowledge phải là thư mục SharePoint có phân quyền.
+> - Không dùng agent để tư vấn chẩn đoán, điều trị, và không đưa thông tin người bệnh vào knowledge.
+> - Bật **Only use specified sources** với mọi agent trả lời về chính sách, định mức, quy trình.
 
 ---
 
-## Prompt đề xuất - Researcher
+## Tự thực hành: agent cho khoa của anh/chị
 
-### Cải tiến trải nghiệm người bệnh
+Lặp lại quy trình trên với một chủ đề của riêng anh/chị. Một vài ý tưởng:
 
-> **PROMPT:**
->
-> Các bệnh viện sản khoa ở Việt Nam và châu Á đã làm gì để rút ngắn thời gian chờ thủ tục xuất viện? Nêu 5 giải pháp có ví dụ và kết quả. Đặt cạnh sheet Tổng hợp cơ sở và Góp ý người bệnh trong file /Báo cáo Hoạt động Q3 2026 - 4 cơ sở, cho biết cơ sở nào cần ưu tiên và đề xuất lộ trình 90 ngày. Kèm nguồn.
+| Ý tưởng | Knowledge | Starter prompts gợi ý |
+|---------|-----------|------------------------|
+| **Trợ lý điều dưỡng mới** | Sổ tay định hướng, quy trình của khoa | "Ngày đầu tiên tôi cần làm gì?", "Bàn giao ca gồm những gì?" |
+| **Trợ lý SOP khoa** | Thư mục SOP đã ban hành | "Quy trình chuẩn bị sản phụ trước mổ?", "Biểu mẫu nào dùng khi chuyển khoa?" |
+| **Trợ lý chăm sóc khách hàng** | Bảng giá dịch vụ, câu hỏi thường gặp | "Gói sinh thường gồm những gì?", "Giờ thăm người bệnh?" |
 
-### Quản lý chất lượng
-
-> **PROMPT:**
->
-> Tổng hợp các chỉ số an toàn người bệnh phổ biến mà bệnh viện đạt chuẩn quốc tế theo dõi cho khoa Sản (ví dụ tỷ lệ băng huyết sau sinh, nhiễm trùng vết mổ), cách tính từng chỉ số và tần suất báo cáo. Kèm nguồn.
-
-### Đào tạo
-
-> **PROMPT:**
->
-> Tìm các mô hình đào tạo định hướng cho điều dưỡng mới ở khoa Sản và Nhi tại các bệnh viện trong khu vực: thời lượng, nội dung, cách đánh giá. Đề xuất một chương trình 4 tuần phù hợp với file /Tài liệu đào tạo Phụng sự từ tâm.
+1. **Chủ đề** - Agent hỗ trợ việc gì, cho ai?
+2. **Người dùng và giọng điệu** - Điều dưỡng, hành chính hay khách hàng? Thân thiện hay trang trọng?
+3. **Knowledge** - Thư mục SharePoint nào làm nguồn? Ai đang có quyền đọc?
+4. **Giới hạn** - Agent không được trả lời hoặc cam kết điều gì?
+5. **Starter prompts** - 3-4 câu hỏi người dùng hay hỏi nhất
+6. **Bộ câu test** - 3 câu có đáp án rõ trong tài liệu và 1 câu ngoài phạm vi để kiểm tra agent có từ chối không
 
 ---
 
 ## Tổng kết
 
-| Anh/chị đã học được | Tính năng |
-|---------------------|-----------|
-| Mở Researcher từ mục Agents trong Chat | Researcher |
-| Đề bài dạng câu hỏi cụ thể, kết hợp file nội bộ và web | Researcher + file đính kèm |
-| Định hình báo cáo theo người đọc, kiểm tra nguồn | Câu hỏi làm rõ, trích dẫn |
+| Anh/chị đã làm được | Ở bước |
+|---------------------|--------|
+| Mô tả agent bằng tiếng Việt, không cần lập trình | Mô tả bằng prompt (Bước 2-4) |
+| Kiểm tra và chỉnh Name, Description, Instructions | Configure (Bước 5) |
+| Gắn Chính sách Nhân sự làm knowledge, giới hạn agent chỉ dùng nguồn này | Configure (Bước 6) |
+| Thiết kế starter prompts | Configure (Bước 7) |
+| Test bằng bộ câu hỏi có đáp án, kể cả câu ngoài phạm vi và dữ liệu nhạy cảm | Khung chat thử nghiệm (Bước 8) |
+| Tạo agent và chia sẻ link cho đồng nghiệp | Create (Bước 9) |
